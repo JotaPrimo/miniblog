@@ -24,66 +24,70 @@ const Register = () => {
           </div>
         </div>
 
-        <form class="flex flex-col items-center gap-3">
-          <div className="w-1/3">
-            <label className="mb-5">
-              <span>Nome:</span>
-              <input
-                className="input"
-                type="text"
-                required
-                name="displayName"
-                placeholder="Nome do usúario"
-              />
-            </label>
-          </div>
+        <div class="grid justify-items-center">
+          <div className="card w-full">
+            <form class="flex flex-col items-center gap-3">
+              <div className="w-full">
+                <label className="mb-5">
+                  <span>Nome:</span>
+                  <input
+                    className="input"
+                    type="text"
+                    required
+                    name="displayName"
+                    placeholder="Nome do usúario"
+                  />
+                </label>
+              </div>
 
-          <div className="w-1/3">
-            <label className="mb-5">
-              <span>E-mail:</span>
-              <input
-                className="input"
-                type="password"
-                required
-                name="email"
-                placeholder="Email do usúario"
-              />
-            </label>
-          </div>
+              <div className="w-full">
+                <label className="mb-5">
+                  <span>E-mail:</span>
+                  <input
+                    className="input"
+                    type="password"
+                    required
+                    name="email"
+                    placeholder="Email do usúario"
+                  />
+                </label>
+              </div>
 
-          <div className="w-1/3">
-            <label className="mb-5">
-              <span>Password:</span>
-              <input
-                className="input"
-                type="password"
-                required
-                name="password"
-                placeholder="Password do usúario"
-              />
-            </label>
-          </div>
+              <div className="w-full">
+                <label className="mb-5">
+                  <span>Password:</span>
+                  <input
+                    className="input"
+                    type="password"
+                    required
+                    name="password"
+                    placeholder="Password do usúario"
+                  />
+                </label>
+              </div>
 
-          <div className="w-1/3">
-            <label className="mb-5">
-              <span>Confirm Password:</span>
-              <input
-                className="input"
-                type="password"
-                required
-                name="confirmPassword"
-                placeholder="Confirme Password"
-              />
-            </label>
-          </div>
+              <div className="w-full">
+                <label className="mb-5">
+                  <span>Confirm Password:</span>
+                  <input
+                    className="input"
+                    type="password"
+                    required
+                    name="confirmPassword"
+                    placeholder="Confirme Password"
+                  />
+                </label>
+              </div>
 
-          <button className="btn-dark">Cadastrar</button>
-        </form>
+              <button className="btn-dark">Cadastrar</button>
+            </form>
+          </div>
+        </div>
       </div>
 
-      {/* <div class="flex-none bg-red-300 w-1/3 h-14">01</div>
+      {/* <div class="flex-none bg-red-300 w-full h-14">01</div>
         
-        <div class="flex-initial bg-blue-500 w-1/3 h-14">03</div> */}
+        <div class="flex-initial bg-blue-500 w-full h-14">03</div> */}
     </>
   );
 };
