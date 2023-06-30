@@ -11,6 +11,8 @@ import NotFound from "./pages/NotFound/NotFound";
 // components
 import Navbar from "./componets/Nabvar/Navbar";
 import Footer from "./componets/Footer/Footer";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 
 function App() {
   return (
@@ -22,8 +24,10 @@ function App() {
           <br />
           <br />
           <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/about" element={<About />}></Route>
+            <Route path="/" element={ <Home /> }></Route>
+            <Route path="/about" element={ <About /> }></Route>
+            <Route path="/login" element={ <Login /> }></Route>
+            <Route path="/register" element={ <Register />} ></Route>
 
             {/** NOT FOUND */}
             <Route path="*" element={<NotFound />}></Route>
