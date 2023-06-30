@@ -1,32 +1,56 @@
+// import styles
 import styles from "./Register.module.css";
 
+// import state
+import { useState, useEffect } from "react";
+
+// import components
+import AlertInfo from "../../componets/Alerts/AlertInfo";
+import AlertDanger from "../../componets/Alerts/AlertDanger";
+
 const Register = () => {
+  // states dos inputs, valor default vazio
+  const [displayName, setDisplayName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] =  useState('');
+  const [error, setError] = useState('');
+
+  // metodos
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('submittado');
+
+    // checando senhas iguais
+    if (password !== confirmPassword) {       
+        setError("As senhas são diferentes.");
+        return;
+    }
+
+    console.log(user);
+
+    // limpando valores
+    setError('');
+    setDisplayName('');
+    setEmail('');
+    setPassword('');
+    setConfirmPassword('');
+  }
+
+  // criando obejto de user
+  const user = {
+    displayName, email, password
+  }
+
   return (
     <>
       <div>
-        <div class="alert-info" role="alert">
-          <svg
-            aria-hidden="true"
-            class="flex-shrink-0 inline w-5 h-5 mr-3"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-          <div>
-            <span class="font-medium">Atenção</span> Faça seu cadastro para
-            postar
-          </div>
-        </div>
+        { !error && <AlertInfo msg={"Faça seu cadastro para postar"} /> }
+        {error && <AlertDanger msg={error} /> } 
 
-        <div class="grid justify-items-center">
+        <div className="grid justify-items-center">
           <div className="card w-full">
-            <form class="flex flex-col items-center gap-3">
+            <form className="flex flex-col items-center gap-3" onSubmit={handleSubmit}>
               <div className="w-full">
                 <label className="mb-5">
                   <span>Nome:</span>
@@ -36,6 +60,8 @@ const Register = () => {
                     required
                     name="displayName"
                     placeholder="Nome do usúario"
+                    value={displayName}
+                    onChange={(e) => setDisplayName(e.target.value)}
                   />
                 </label>
               </div>
@@ -45,10 +71,12 @@ const Register = () => {
                   <span>E-mail:</span>
                   <input
                     className="input"
-                    type="password"
+                    type="email"
                     required
                     name="email"
                     placeholder="Email do usúario"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </label>
               </div>
@@ -62,6 +90,8 @@ const Register = () => {
                     required
                     name="password"
                     placeholder="Password do usúario"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </label>
               </div>
@@ -75,19 +105,24 @@ const Register = () => {
                     required
                     name="confirmPassword"
                     placeholder="Confirme Password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
                   />
                 </label>
               </div>
 
-              <button className="btn-dark">Cadastrar</button>
+            <div className="flex justify-center">
+            <button className="btn-dark">Cadastrar</button>
+              <button className="btn-default">Login</button>
+            </div>             
             </form>
           </div>
         </div>
       </div>
 
-      {/* <div class="flex-none bg-red-300 w-full h-14">01</div>
+      {/* <div className="flex-none bg-red-300 w-full h-14">01</div>
         
-        <div class="flex-initial bg-blue-500 w-full h-14">03</div> */}
+        <div className="flex-initial bg-blue-500 w-full h-14">03</div> */}
     </>
   );
 };
