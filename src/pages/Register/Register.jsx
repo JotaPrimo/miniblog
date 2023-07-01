@@ -1,56 +1,59 @@
-// import styles
 import styles from "./Register.module.css";
 
-// import state
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useAuthentication } from "../../hooks/useAuthentication";
 
-// import components
 import AlertInfo from "../../componets/Alerts/AlertInfo";
 import AlertDanger from "../../componets/Alerts/AlertDanger";
 
 const Register = () => {
-  // states dos inputs, valor default vazio
-  const [displayName, setDisplayName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] =  useState('');
-  const [error, setError] = useState('');
+  const [displayName, setDisplayName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
 
-  // metodos
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('submittado');
+  const { createUser, error: authError, loading } = useAuthentication();
 
-    // checando senhas iguais
-    if (password !== confirmPassword) {       
-        setError("As senhas são diferentes.");
-        return;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    setError("");
+
+    const user = {
+      displayName,
+      email,
+      password,
+    };
+
+    if (password !== confirmPassword) {
+      setError("As senhas precisam ser iguais.");
+      return;
     }
 
-    console.log(user);
+    const res = await createUser(user);
 
-    // limpando valores
-    setError('');
-    setDisplayName('');
-    setEmail('');
-    setPassword('');
-    setConfirmPassword('');
-  }
+    console.log(res);
+  };
 
-  // criando obejto de user
-  const user = {
-    displayName, email, password
-  }
+  useEffect(() => {
+    if (authError) {
+      setError(authError);
+    }
+  }, [authError]);
 
   return (
     <>
       <div>
-        { !error && <AlertInfo msg={"Faça seu cadastro para postar"} /> }
-        {error && <AlertDanger msg={error} /> } 
+        {!error && <AlertInfo msg={"Faça seu cadastro para postar"} />}
+        {error && <AlertDanger msg={error} />}
 
         <div className="grid justify-items-center">
           <div className="card w-full">
-            <form className="flex flex-col items-center gap-3" onSubmit={handleSubmit}>
+            <form
+              className="flex flex-col items-center gap-3"
+              onSubmit={handleSubmit}
+            >
               <div className="w-full">
                 <label className="mb-5">
                   <span>Nome:</span>
@@ -111,10 +114,18 @@ const Register = () => {
                 </label>
               </div>
 
-            <div className="flex justify-center">
-            <button className="btn-dark">Cadastrar</button>
-              <button className="btn-default">Login</button>
-            </div>             
+              <div className="flex justify-center">
+                {!loading && (
+                  <button type="submit" className="btn-dark">
+                    Cadastrar
+                  </button>
+                )}
+                {loading && (
+                  <button className="btn-dark" disabled>
+                    Aguarde...
+                  </button>
+                )}
+              </div>
             </form>
           </div>
         </div>

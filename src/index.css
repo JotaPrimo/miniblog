@@ -53,11 +53,11 @@
 }
 
 .container {
-    @apply min-h-60vh mx-auto mb-5;
+    @apply min-h-60vh  mx-auto mb-5;
 }
 
 .footer {
-    @apply shadow bg-gray-600 h-64 flex flex-col items-center justify-center;
+    @apply shadow bg-gray-600 h-64 flex flex-col text-white items-center justify-center;
 }
 
 .input {
@@ -65,6 +65,6 @@
 }
 
 .navbar-white {
-    @apply flex justify-between items-center px-1 py-4 bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600;
+    @apply flex justify-between items-center px-1 py-4 bg-slate-200 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600;
 }
 
